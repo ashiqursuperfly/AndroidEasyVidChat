@@ -1,5 +1,5 @@
 /*
-package com.ashiqurrahman
+package com.ashiqurrahman.easyvidchat
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -22,7 +22,7 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.ashiqurrahman", appContext.packageName)
+        assertEquals("com.ashiqurrahman.easyvidchat.test", appContext.packageName)
     }
 }
 */

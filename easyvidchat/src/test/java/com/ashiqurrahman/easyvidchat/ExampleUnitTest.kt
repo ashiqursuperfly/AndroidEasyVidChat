@@ -1,5 +1,5 @@
 /*
-package com.ashiqurrahman
+package com.ashiqurrahman.easyvidchat
 
 import org.junit.Test
 

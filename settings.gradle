@@ -1,2 +1,3 @@
 rootProject.name='AndroidEasyVidChat'
 include ':app'
+include ':easyvidchat'
