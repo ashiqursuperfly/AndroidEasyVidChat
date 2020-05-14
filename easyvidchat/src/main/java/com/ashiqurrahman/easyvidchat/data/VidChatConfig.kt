@@ -50,11 +50,11 @@ object VidChatConfig {
     var isOrdered = true
     var isNegotiated = false
 
-    var maxReTransmitTimeMillis = -1
-    var maxReTransmits = -1
+    const val maxReTransmitTimeMillis = -1
+    const val maxReTransmits = -1
 
-    var dataID =  -1
-    var protocol = ""
+    const val dataID =  -1
+    const val protocol = ""
 
 
 
