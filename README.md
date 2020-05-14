@@ -1,7 +1,3 @@
-# TODO
-- Make sure you are not violating licences for the google files
-- 
-
 ## Setup
 - Add dependency in build.gradle
 - Add this in app-level build.gradle inside android {}
