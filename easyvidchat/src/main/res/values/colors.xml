@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#CDDC39</color>
-    <color name="colorPrimaryDark">#AFB42B</color>
-    <color name="colorAccent">#FFEB3B</color>
-    <color name="fine_black">#212121</color>
+    <color name="color_vid_chat_btns">#222222</color>
 </resources>

@@ -11,7 +11,7 @@ import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
-    private val mRoomID: String = "103103106"
+    private val mRoomID: String = "103103126"
     val CALL_REQUEST_CODE = 1231;
     val PERMISSION_REQUEST_CODE = 1232;
 
@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         VidChat.requestVideoChatPermissions( this, PERMISSION_REQUEST_CODE)
+        startActivityForResult(VidChat.getCallingIntent(this, mRoomID),CALL_REQUEST_CODE)
 
     }
 
