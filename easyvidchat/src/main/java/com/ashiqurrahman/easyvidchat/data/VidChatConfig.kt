@@ -22,9 +22,6 @@ object VidChatConfig {
     var aecDump = false
 
     var openSLESEnabled = false
-
-    var speakerPhone = "auto"
-
     var builtInAECDisabled = false
     var builtInAGCDisabled = false
 
@@ -32,7 +29,6 @@ object VidChatConfig {
     var disableWebRTCAGCAndHPF = false
 
     var videoResolution = VideoResolution.DEFAULT
-
     var cameraFPS = FPSValues.DEFAULT
 
     var captureQualitySliderEnable = false
@@ -49,6 +45,8 @@ object VidChatConfig {
     var dataChannelEnabled = true
     var isOrdered = true
     var isNegotiated = false
+
+    const val speakerPhone = "auto"
 
     const val maxReTransmitTimeMillis = -1
     const val maxReTransmits = -1

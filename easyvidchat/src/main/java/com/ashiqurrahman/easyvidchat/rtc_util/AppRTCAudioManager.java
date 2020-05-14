@@ -169,7 +169,7 @@ public class AppRTCAudioManager {
         wiredHeadsetReceiver = new WiredHeadsetReceiver();
         amState = AudioManagerState.UNINITIALIZED;
 
-        useSpeakerphone = VidChatConfig.INSTANCE.getSpeakerPhone();
+        useSpeakerphone = VidChatConfig.speakerPhone;
         Log.d(TAG, "useSpeakerphone: " + useSpeakerphone);
         if (useSpeakerphone.equals(SPEAKERPHONE_FALSE)) {
             defaultAudioDevice = AudioDevice.EARPIECE;
