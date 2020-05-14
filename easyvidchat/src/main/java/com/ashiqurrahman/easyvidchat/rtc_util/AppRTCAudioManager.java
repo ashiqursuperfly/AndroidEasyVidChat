@@ -14,17 +14,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-
 import android.content.pm.PackageManager;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.ashiqurrahman.easyvidchat.R;
 import com.ashiqurrahman.easyvidchat.data.VidChatConfig;
 
 import org.webrtc.ThreadUtils;
