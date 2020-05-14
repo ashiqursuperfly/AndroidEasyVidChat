@@ -8,11 +8,6 @@ allprojects {
     }
 }
 ```
-
-- Add dependency in app-level build.gradle
-```groovy
-implementation 'com.github.ashiqursuperfly:AndroidEasyVidChat:1.0.0'
-```
 - Add this in app-level build.gradle inside android {}
 ```groovy
 compileOptions {
@@ -23,9 +18,13 @@ kotlinOptions {
     jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
   ```
+- Add dependency in app-level build.gradle
+```groovy
+implementation 'com.github.ashiqursuperfly:AndroidEasyVidChat:1.0.0'
+```
 - Add this in manifest
 ```xml
-<activity android:name=".easyvidchat.ui.CallActivity" />
+<activity android:name="com.ashiqurrahman.easyvidchat.ui.CallActivity" />
 ```
 
 ## Usage
@@ -50,7 +49,7 @@ override fun onActivityResult(
             if (resultCode == Activity.RESULT_OK) {
                 Toast.makeText(this, "CALL Success, OnActivityResult, Code:$resultCode", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "CALL Failed, OnActivityResult, Code:$resultCode", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "CALL Failed/Disconnected, OnActivityResult, Code:$resultCode", Toast.LENGTH_LONG).show()
             }
         }
     }
