@@ -23,6 +23,8 @@ object VidChatConfig {
 
     var openSLESEnabled = false
 
+    var speakerPhone = "auto"
+
     var builtInAECDisabled = false
     var builtInAGCDisabled = false
 

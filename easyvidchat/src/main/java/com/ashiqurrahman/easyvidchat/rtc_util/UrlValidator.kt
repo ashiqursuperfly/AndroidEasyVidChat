@@ -1,4 +1,4 @@
-package com.ashiqurrahman.easyvidchat.util
+package com.ashiqurrahman.easyvidchat.rtc_util
 
 import android.app.Activity
 import android.app.AlertDialog

@@ -37,9 +37,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
 
-    //sharedpreference
-    implementation "androidx.preference:preference-ktx:1.1.1"
-
     // appRTC
     implementation 'org.webrtc:google-webrtc:1.0.30039'
     implementation files('libs/autobanh.jar')

@@ -17,12 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        VidChatInit.initDefaultSettings(this)
         VidChatInit.checkPermissionsAndGetVdoCallIntent("16051031605", this,
             object: InitVidChatIntentListener{
                 override fun onPermissionGranted(intent: Intent?) {
                     if(intent == null){
-                        Toast.makeText(applicationContext, "Please Allow Permissions First",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "Please Allow Permissions First", Toast.LENGTH_SHORT).show()
                         return
                     }
                     startActivityForResult(intent,CALL_REQUEST_CODE)

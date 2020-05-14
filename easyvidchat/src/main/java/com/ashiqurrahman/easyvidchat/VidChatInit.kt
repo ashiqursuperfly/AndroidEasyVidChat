@@ -2,31 +2,22 @@ package com.ashiqurrahman.easyvidchat
 
 import android.annotation.TargetApi
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.util.Log
-import androidx.preference.PreferenceManager
 import com.ashiqurrahman.easyvidchat.data.VidChatConsts
 import com.ashiqurrahman.easyvidchat.data.VidChatConfig
 import com.ashiqurrahman.easyvidchat.ui.CallActivity
-import com.ashiqurrahman.easyvidchat.util.PrefUtil
-import com.ashiqurrahman.easyvidchat.util.UrlValidator.validateUrl
+import com.ashiqurrahman.easyvidchat.rtc_util.UrlValidator.validateUrl
 
 /* Created by ashiq.buet16 **/
 
 object VidChatInit {
 
     const val TAG = "VidChatInit"
-
-    fun initDefaultSettings(context: Context) {
-        PrefUtil.init(context)
-        PreferenceManager.setDefaultValues(context, R.xml.shared_pref_defaults, false)
-    }
-
 
     private fun getIntent(
         activity: Activity,
