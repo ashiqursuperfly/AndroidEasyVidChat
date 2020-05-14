@@ -40,14 +40,10 @@ dependencies {
     //sharedpreference
     implementation "androidx.preference:preference-ktx:1.1.1"
 
-    //    implementation 'com.jakewharton.timber:timber:4.7.1'
-
     // appRTC
     implementation 'org.webrtc:google-webrtc:1.0.30039'
     implementation files('libs/autobanh.jar')
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
-
+    
 
 
 /*  testImplementation 'junit:junit:4.13'

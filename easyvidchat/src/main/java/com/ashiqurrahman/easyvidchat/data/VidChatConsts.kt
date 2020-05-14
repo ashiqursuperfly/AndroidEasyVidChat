@@ -2,9 +2,11 @@ package com.ashiqurrahman.easyvidchat.data
 
 /* Created by ashiq.buet16 **/
 
-object Const {
-    const val CONNECTION_REQUEST = 1
+object VidChatConsts {
+    const val DEFAULT_DEBUG_RUNTIME = 10*60*1000
     const val PERMISSION_REQUEST = 2
+
+    const val ROOM_BASE_URL = "https://appr.tc"
 
     const val EXTRA_VIDEO_CALL = "org.appspot.apprtc.VIDEO_CALL"
     const val EXTRA_ROOMID = "org.appspot.apprtc.ROOMID"
