@@ -1,6 +1,5 @@
 package com.ashiqurrahman.easyvidchat
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -15,14 +14,15 @@ import com.ashiqurrahman.easyvidchat.rtc_util.UrlValidator.validateUrl
 
 /* Created by ashiq.buet16 **/
 
-object VidChatInit {
+object VidChat {
 
     const val TAG = "VidChatInit"
 
-    private fun getIntent(
+    fun getCallingIntent(
         activity: Activity,
         roomID: String
     ): Intent {
+
         val roomUrl = VidChatConsts.ROOM_BASE_URL
 
         // Video call enabled flag.
@@ -31,15 +31,12 @@ object VidChatInit {
         // Use screencapture option.
         val useScreencapture = VidChatConfig.screenCaptureEnabled
 
-
         // Use Camera2 option.
         val useCamera2 = VidChatConfig.useCamera2API
 
         // Get default codecs.
         val videoCodec = VidChatConfig.videoCodec.codecName
-
         val audioCodec = VidChatConfig.audioCodec.name
-
 
         // Check HW codec flag.
         val hwCodec: Boolean = VidChatConfig.hwCodec
@@ -112,7 +109,6 @@ object VidChatInit {
         val videoStartBitrate = VidChatConfig.videoStartBitrate
         val audioStartBitrate = VidChatConfig.audioStartBitrate
 
-
         // Check statistics display option.
         val displayHud = VidChatConfig.displayHUD
         val tracing = VidChatConfig.tracingEnabled
@@ -181,28 +177,21 @@ object VidChatInit {
         return intent
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    fun checkPermissionsAndGetVdoCallIntent(roomID: String, activity: Activity, listener: InitVidChatIntentListener) {
+    fun requestVideoChatPermissions(activity: Activity,requestCode: Int) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Dynamic permissions are not required before Android M.
-            listener.onPermissionGranted(getIntent(activity = activity,roomID =  roomID))
             return
         }
         val missingPermissions = getMissingPermissions(activity)
+
         if (missingPermissions.isNotEmpty()) {
-            activity.requestPermissions(
-                missingPermissions,
-                VidChatConsts.PERMISSION_REQUEST
-            )
-            listener.onPermissionGranted(getIntent(activity = activity,roomID =  roomID))
-        } else {
-            listener.onPermissionGranted(getIntent(activity = activity,roomID =  roomID))
+            activity.requestPermissions(missingPermissions,requestCode)
         }
     }
 
-    private fun getMissingPermissions(activity: Activity): Array<String?> {
+    private fun getMissingPermissions(activity: Activity): Array<String> {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return arrayOfNulls(0)
+            return arrayOf()
         }
         val info: PackageInfo = try {
             activity.packageManager.getPackageInfo(
@@ -211,13 +200,13 @@ object VidChatInit {
             )
         } catch (e: PackageManager.NameNotFoundException) {
             Log.w(TAG,"Failed to retrieve permissions.")
-            return arrayOfNulls(0)
+            return arrayOf()
         }
         if (info.requestedPermissions == null) {
             Log.w(TAG,"No requested permissions.")
-            return arrayOfNulls(0)
+            return arrayOf()
         }
-        val missingPermissions = ArrayList<String?>()
+        val missingPermissions = ArrayList<String>()
 
         for (i in info.requestedPermissions.indices) {
             if (info.requestedPermissionsFlags[i] and PackageInfo.REQUESTED_PERMISSION_GRANTED == 0) {
@@ -227,6 +216,4 @@ object VidChatInit {
         Log.d(TAG, "Missing permissions: $missingPermissions")
         return missingPermissions.toTypedArray()
     }
-
-
 }

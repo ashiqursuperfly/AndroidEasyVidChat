@@ -4,7 +4,6 @@ package com.ashiqurrahman.easyvidchat.data
 
 object VidChatConsts {
     const val DEFAULT_DEBUG_RUNTIME = 10*60*1000
-    const val PERMISSION_REQUEST = 2
 
     const val ROOM_BASE_URL = "https://appr.tc"
 

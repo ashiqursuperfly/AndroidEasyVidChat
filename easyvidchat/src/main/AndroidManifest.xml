@@ -15,8 +15,4 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- TODO: This error should just be due to, default settings in Android Studio.-->
-    <!--  Check if this causes issues while trying to deploy on Play Store-->
-    <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
-
 </manifest>

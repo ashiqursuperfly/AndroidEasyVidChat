@@ -2,32 +2,40 @@ package com.ashiqurrahman
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.ashiqurrahman.easyvidchat.InitVidChatIntentListener
-import com.ashiqurrahman.easyvidchat.VidChatInit
-
+import com.ashiqurrahman.easyvidchat.VidChat
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
+    private val mRoomID: String = "103103106"
     val CALL_REQUEST_CODE = 1231;
+    val PERMISSION_REQUEST_CODE = 1232;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        VidChatInit.checkPermissionsAndGetVdoCallIntent("16051031605", this,
-            object: InitVidChatIntentListener{
-                override fun onPermissionGranted(intent: Intent?) {
-                    if(intent == null){
-                        Toast.makeText(applicationContext, "Please Allow Permissions First", Toast.LENGTH_SHORT).show()
-                        return
-                    }
-                    startActivityForResult(intent,CALL_REQUEST_CODE)
-                }
-            }
-        )
+        VidChat.requestVideoChatPermissions( this, PERMISSION_REQUEST_CODE)
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        var allPermissionsGranted = true
+        for (item in grantResults)
+            if (item != PackageManager.PERMISSION_GRANTED) allPermissionsGranted = false
+
+        if (allPermissionsGranted)
+            startActivityForResult(VidChat.getCallingIntent(this, mRoomID), CALL_REQUEST_CODE)
     }
 
     override fun onActivityResult(

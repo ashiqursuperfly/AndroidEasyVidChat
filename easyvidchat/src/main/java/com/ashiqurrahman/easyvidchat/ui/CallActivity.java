@@ -598,7 +598,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         if (logToast != null) {
             logToast.cancel();
         }
-        logToast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        logToast = Toast.makeText(this, msg, Toast.LENGTH_LONG);
         logToast.show();
     }
 
