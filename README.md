@@ -27,3 +27,6 @@ kotlinOptions {
 ```xml
 <activity android:name=".easyvidchat.ui.CallActivity" />
 ```
+
+
+
