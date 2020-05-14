@@ -15,4 +15,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!--TODO:investigate if we need this.-->
+    <!--   <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />-->
+
 </manifest>
