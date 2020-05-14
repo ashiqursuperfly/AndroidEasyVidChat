@@ -1,3 +1,6 @@
+# Easy Android Video Call [![](https://jitpack.io/v/ashiqursuperfly/AndroidEasyVidChat.svg)](https://jitpack.io/#ashiqursuperfly/AndroidEasyVidChat)
+Add video calling to your android application using just a few lines of code
+
 ## Setup
 - Add jitpack in project-level build.gradle
 ```groovy
