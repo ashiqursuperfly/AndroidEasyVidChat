@@ -39,6 +39,11 @@ VidChat.requestVideoChatPermissions( this, PERMISSION_REQUEST_CODE)
 ```kotlin
 startActivityForResult(VidChat.getCallingIntent(activity, roomID), CALL_REQUEST_CODE) // send an unique roomID for your call, the receiver user must also connect on the same roomID
 ```
+- similarly if you want screen sharing
+```kotlin
+VidChatConfig.screenCaptureEnabled = true
+startActivityForResult(VidChat.getCallingIntent(activity, roomID), CALL_REQUEST_CODE) // send an unique roomID for your call, the receiver user must also connect on the same roomID
+```
 - receive results after the call is disconnected
 ```kotlin
 override fun onActivityResult(
@@ -50,9 +55,9 @@ override fun onActivityResult(
 
         if(requestCode == CALL_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                Toast.makeText(this, "CALL Success, OnActivityResult, Code:$resultCode", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Call Success, OnActivityResult, Code:$resultCode", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "CALL Failed/Disconnected, OnActivityResult, Code:$resultCode", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Call Failed/Disconnected, OnActivityResult, Code:$resultCode", Toast.LENGTH_LONG).show()
             }
         }
     }
