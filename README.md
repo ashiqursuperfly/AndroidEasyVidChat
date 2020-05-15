@@ -62,8 +62,8 @@ override fun onActivityResult(
         }
     }
 ```
-## [Advanced Usage](https://github.com/ashiqursuperfly/AndroidEasyVidChat/wiki/Advanced-Usage)
-
+## Advanced Usage
+Please go through the [Wiki](https://github.com/ashiqursuperfly/AndroidEasyVidChat/wiki/Advanced-Usage) for a list of advanced options 
 
 #### This code makes use of this <a href="https://appr.tc/">https://appr.tc/</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
 
