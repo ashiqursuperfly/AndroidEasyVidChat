@@ -37,7 +37,7 @@ VidChat.requestVideoChatPermissions( this, PERMISSION_REQUEST_CODE)
 ```
 - after the user has accepted all the permissions, just a **single line of code** initiates video calling intent
 ```kotlin
-startActivityForResult(VidChat.getCallingIntent(this, roomID), CALL_REQUEST_CODE) // send an unique roomID for your call, the receiver user must also connect on the same roomID
+startActivityForResult(VidChat.getCallingIntent(activity, roomID), CALL_REQUEST_CODE) // send an unique roomID for your call, the receiver user must also connect on the same roomID
 ```
 - receive results after the call is disconnected
 ```kotlin
