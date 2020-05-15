@@ -161,13 +161,18 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         fullscreenRenderer = findViewById(R.id.fullscreen_video_view);
         callFragment = new CallFragment();
         hudFragment = new HudFragment();
+        final Intent intent = getIntent();
+        boolean loopback = intent.getBooleanExtra(EXTRA_LOOPBACK, false);
+        boolean tracing = intent.getBooleanExtra(EXTRA_TRACING, false);
+        int videoWidth = intent.getIntExtra(EXTRA_VIDEO_WIDTH, 0);
+        int videoHeight = intent.getIntExtra(EXTRA_VIDEO_HEIGHT, 0);
+        screencaptureEnabled = intent.getBooleanExtra(EXTRA_SCREENCAPTURE, false);
         // Show/hide call control fragment on view click.
         View.OnClickListener listener = view -> toggleCallControlFragmentVisibility();
         // Swap feeds on pip view click.
         pipRenderer.setOnClickListener(view -> setSwappedFeeds(!isSwappedFeeds));
         fullscreenRenderer.setOnClickListener(listener);
         remoteSinks.add(remoteProxyRenderer);
-        final Intent intent = getIntent();
         final EglBase eglBase = EglBase.create();
         // Create video renderers.
         pipRenderer.init(eglBase.getEglBaseContext(), null);
@@ -192,7 +197,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         pipRenderer.setEnableHardwareScaler(true /* enabled */);
         fullscreenRenderer.setEnableHardwareScaler(false /* enabled */);
         // Start with local feed in fullscreen and swap it to the pip when the call is connected.
-        setSwappedFeeds(true /* isSwappedFeeds */);
+        if(!screencaptureEnabled)setSwappedFeeds(true /* isSwappedFeeds */);
+        else setSwappedFeeds(false);
         // Check for mandatory permissions.
         for (String permission :MANDATORY_PERMISSIONS) {
             if (checkCallingOrSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
@@ -220,11 +226,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
             finish();
             return;
         }
-        boolean loopback = intent.getBooleanExtra(EXTRA_LOOPBACK, false);
-        boolean tracing = intent.getBooleanExtra(EXTRA_TRACING, false);
-        int videoWidth = intent.getIntExtra(EXTRA_VIDEO_WIDTH, 0);
-        int videoHeight = intent.getIntExtra(EXTRA_VIDEO_HEIGHT, 0);
-        screencaptureEnabled = intent.getBooleanExtra(EXTRA_SCREENCAPTURE, false);
         // If capturing format is not specified for screencapture, use screen resolution.
         if (screencaptureEnabled && videoWidth == 0 && videoHeight == 0) {
             DisplayMetrics displayMetrics = getDisplayMetrics();
@@ -304,6 +305,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         } else {
             startCall();
         }
+        if(screencaptureEnabled)pipRenderer.setVisibility(View.GONE);
     }
 
     @TargetApi(17)
