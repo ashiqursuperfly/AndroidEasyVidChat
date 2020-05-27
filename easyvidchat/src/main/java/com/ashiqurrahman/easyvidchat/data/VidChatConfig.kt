@@ -62,9 +62,16 @@ object VidChatConfig {
         var iconDrawableRes: Int = R.drawable.ic_video_call
         var btnTextColorRes: Int = R.color.color1
         var btnBgColorRes: Int = R.color.color2
-        var colorVidChatButtons: Int = R.color.color2
         var titleTextColorHexSixDigitString = "#000000"
         var textMsgColorHexSixDigitString ="#000000"
+    }
+
+    object VidChatIcons {
+        var micIcon: Int = R.drawable.ic_mic
+        var disconnectIcon: Int = R.drawable.ic_disconnect
+        var fullScreenIcon: Int = R.drawable.ic_fullscreen
+        var fullScreenExitIcon: Int = R.drawable.ic_fullscreen_exit
+        var switchCameraIcon: Int = R.drawable.ic_switch_camera
     }
 
 }

@@ -20,8 +20,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import com.ashiqurrahman.easyvidchat.R;
+import com.ashiqurrahman.easyvidchat.data.VidChatConfig;
 import com.ashiqurrahman.easyvidchat.data.VidChatConsts;
 import com.ashiqurrahman.easyvidchat.rtc_util.CaptureQualityController;
 import com.ashiqurrahman.easyvidchat.rtc_util.OnCallEvents;
@@ -33,6 +33,7 @@ import org.webrtc.RendererCommon.ScalingType;
  */
 public class CallFragment extends Fragment {
     private TextView contactView;
+    private ImageButton disconnectButton;
     private ImageButton cameraSwitchButton;
     private ImageButton videoScalingButton;
     private ImageButton toggleMuteButton;
@@ -48,26 +49,18 @@ public class CallFragment extends Fragment {
         View controlView = inflater.inflate(R.layout.fragment_call, container, false);
         // Create UI controls.
         contactView = controlView.findViewById(R.id.contact_name_call);
-        ImageButton disconnectButton = controlView.findViewById(R.id.button_call_disconnect);
+        disconnectButton = controlView.findViewById(R.id.button_call_disconnect);
         cameraSwitchButton = controlView.findViewById(R.id.button_call_switch_camera);
         videoScalingButton = controlView.findViewById(R.id.button_call_scaling_mode);
         toggleMuteButton = controlView.findViewById(R.id.button_call_toggle_mic);
         captureFormatText = controlView.findViewById(R.id.capture_format_text_call);
         captureFormatSlider = controlView.findViewById(R.id.capture_format_slider_call);
         // Add buttons click events.
-        disconnectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callEvents.onCallHangUp();
-            }
-        });
-        cameraSwitchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callEvents.onCameraSwitch();
-            }
-        });
-        videoScalingButton.setOnClickListener(new View.OnClickListener() {
+        initDrawables();
+        disconnectButton.setOnClickListener(view -> callEvents.onCallHangUp());
+        cameraSwitchButton.setOnClickListener(view -> callEvents.onCameraSwitch());
+        videoScalingButton.setVisibility(View.GONE);
+        /*videoScalingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (scalingType == ScalingType.SCALE_ASPECT_FILL) {
@@ -80,13 +73,10 @@ public class CallFragment extends Fragment {
                 callEvents.onVideoScalingSwitch(scalingType);
             }
         });
-        scalingType = ScalingType.SCALE_ASPECT_FILL;
-        toggleMuteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean enabled = callEvents.onToggleMic();
-                toggleMuteButton.setAlpha(enabled ? 1.0f : 0.3f);
-            }
+        scalingType = ScalingType.SCALE_ASPECT_FILL;*/
+        toggleMuteButton.setOnClickListener(view -> {
+            boolean enabled = callEvents.onToggleMic();
+            toggleMuteButton.setAlpha(enabled ? 1.0f : 0.3f);
         });
         return controlView;
     }
@@ -120,5 +110,12 @@ public class CallFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         callEvents = (OnCallEvents) activity;
+    }
+
+    private void initDrawables() {
+       disconnectButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getDisconnectIcon());
+       cameraSwitchButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getSwitchCameraIcon());
+       toggleMuteButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getMicIcon());
+       videoScalingButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getFullScreenIcon());
     }
 }

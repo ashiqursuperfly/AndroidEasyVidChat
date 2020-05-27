@@ -23,10 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         VidChatConfig.AlertDialogUI.alertDialogBgColorRes = R.color.colorPrimary
         VidChatConfig.AlertDialogUI.btnBgColorRes = R.color.colorPrimaryDark
-        VidChatConfig.AlertDialogUI.iconDrawableRes = R.drawable.ic_mic
+        VidChatConfig.AlertDialogUI.iconDrawableRes = R.drawable.ic_launcher_foreground
         VidChatConfig.AlertDialogUI.btnTextColorRes = R.color.colorPrimary
         VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#FFFFFF"
         VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#FFFFFF"
+
+        VidChatConfig.VidChatIcons.switchCameraIcon = R.drawable.ic_launcher_foreground
+
 
         VidChat.requestVideoChatPermissions(this, PERMISSION_REQUEST_CODE)
         activity = this
