@@ -22,21 +22,21 @@ public class UiUtil {
         final AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
         String html = "<font color='HEX'>TEXT</font>";
 
-        String htmlTitle = html.replace("HEX",VidChatConfig.UI.INSTANCE.getTitleTextColorHex()).replace("TEXT",title);
+        String htmlTitle = html.replace("HEX",VidChatConfig.AlertDialogUI.INSTANCE.getTitleTextColorHexSixDigitString()).replace("TEXT",title);
         alertDialog.setTitle(Html.fromHtml(htmlTitle));
-        String htmlMsg = html.replace("HEX",VidChatConfig.UI.INSTANCE.getTextMsgColorHex()).replace("TEXT",msg);
+        String htmlMsg = html.replace("HEX",VidChatConfig.AlertDialogUI.INSTANCE.getTextMsgColorHexSixDigitString()).replace("TEXT",msg);
         alertDialog.setMessage(Html.fromHtml(htmlMsg));
-        alertDialog.setIcon(VidChatConfig.UI.INSTANCE.getIconDrawableRes());
+        alertDialog.setIcon(VidChatConfig.AlertDialogUI.INSTANCE.getIconDrawableRes());
         alertDialog.setCancelable(false);
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, btnText, task);
         alertDialog.setOnShowListener(arg0 -> {
             Button btn =alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-            btn.setTextColor(activity.getResources().getColor(VidChatConfig.UI.INSTANCE.getBtnTextColorRes()));
-            btn.setBackgroundColor(activity.getResources().getColor(VidChatConfig.UI.INSTANCE.getBtnBgColorRes()));
+            btn.setTextColor(activity.getResources().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getBtnTextColorRes()));
+            btn.setBackgroundColor(activity.getResources().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getBtnBgColorRes()));
 
             Window window = alertDialog.getWindow();
-            if(window != null)window.setBackgroundDrawableResource(VidChatConfig.UI.INSTANCE.getAlertDialogBgColorRes());
+            if(window != null)window.setBackgroundDrawableResource(VidChatConfig.AlertDialogUI.INSTANCE.getAlertDialogBgColorRes());
 
         });
         alertDialog.show();

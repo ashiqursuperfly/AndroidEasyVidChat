@@ -57,14 +57,14 @@ object VidChatConfig {
     const val protocol = ""
 
 
-    object UI {
+    object AlertDialogUI {
         var alertDialogBgColorRes: Int = R.color.color1
         var iconDrawableRes: Int = R.drawable.ic_video_call
         var btnTextColorRes: Int = R.color.color1
         var btnBgColorRes: Int = R.color.color2
         var colorVidChatButtons: Int = R.color.color2
-        var titleTextColorHex = "#000000"
-        var textMsgColorHex ="#000000"
+        var titleTextColorHexSixDigitString = "#000000"
+        var textMsgColorHexSixDigitString ="#000000"
     }
 
 }

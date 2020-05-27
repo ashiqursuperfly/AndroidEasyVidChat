@@ -2,16 +2,13 @@ package com.ashiqurrahman
 
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.ashiqurrahman.easyvidchat.VidChat
 import com.ashiqurrahman.easyvidchat.data.VidChatConfig
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,8 +20,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        VidChatConfig.AlertDialogUI.alertDialogBgColorRes = R.color.colorPrimary
+        VidChatConfig.AlertDialogUI.btnBgColorRes = R.color.colorPrimaryDark
+        VidChatConfig.AlertDialogUI.iconDrawableRes = R.drawable.ic_mic
+        VidChatConfig.AlertDialogUI.btnTextColorRes = R.color.colorPrimary
+        VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#FFFFFF"
+        VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#FFFFFF"
+
         VidChat.requestVideoChatPermissions(this, PERMISSION_REQUEST_CODE)
-        //VidChatConfig.screenCaptureEnabled = true
         activity = this
 
         btn_call.setOnClickListener {
