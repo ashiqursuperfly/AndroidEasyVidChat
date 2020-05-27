@@ -1,5 +1,7 @@
 package com.ashiqurrahman.easyvidchat.data
 
+import com.ashiqurrahman.easyvidchat.R
+
 /* Created by ashiq.buet16 **/
 
 object VidChatConfig {
@@ -55,6 +57,15 @@ object VidChatConfig {
     const val protocol = ""
 
 
+    object UI {
+        var alertDialogBgColorRes: Int = R.color.color1
+        var iconDrawableRes: Int = R.drawable.ic_video_call
+        var btnTextColorRes: Int = R.color.color1
+        var btnBgColorRes: Int = R.color.color2
+        var colorVidChatButtons: Int = R.color.color2
+        var titleTextColorHex = "#000000"
+        var textMsgColorHex ="#000000"
+    }
 
 }
 

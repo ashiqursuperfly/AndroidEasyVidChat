@@ -18,6 +18,9 @@ import android.util.TypedValue;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.ashiqurrahman.easyvidchat.R;
+import com.ashiqurrahman.easyvidchat.ui.UiUtil;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 

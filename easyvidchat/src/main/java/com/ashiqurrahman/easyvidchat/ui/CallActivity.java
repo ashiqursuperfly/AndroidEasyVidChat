@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.projection.MediaProjection;
@@ -34,6 +35,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.ashiqurrahman.easyvidchat.R;
+import com.ashiqurrahman.easyvidchat.VidChat;
+import com.ashiqurrahman.easyvidchat.data.VidChatConfig;
 import com.ashiqurrahman.easyvidchat.rtc_util.AppRTCAudioManager;
 import com.ashiqurrahman.easyvidchat.rtc_util.AppRTCAudioManager.AudioDevice;
 import com.ashiqurrahman.easyvidchat.rtc_util.AppRTCClient;
@@ -580,17 +583,19 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
             Log.e(TAG, "Critical error:" + errorMessage);
             disconnect();
         } else {
-            new AlertDialog.Builder(this)
-                    .setTitle(getText(R.string.channel_error_title))
-                    .setMessage(errorMessage)
-                    .setCancelable(false)
-                    .setNeutralButton(R.string.ok,
-                            (dialog, id) -> {
-                                dialog.cancel();
-                                disconnect();
-                            })
-                    .create()
-                    .show();
+
+            UiUtil.showAlertDialog(
+                    this,
+                    getText(R.string.channel_error_title).toString(),
+                    errorMessage,
+                    getText(R.string.ok).toString(),
+                    (dialog,which) -> {
+                        dialog.cancel();
+                        disconnect();
+                    }
+            );
+
+
         }
     }
 

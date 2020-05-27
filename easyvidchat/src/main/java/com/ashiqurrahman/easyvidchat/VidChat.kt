@@ -47,14 +47,12 @@ object VidChat {
         // Check FlexFEC.
         val flexfecEnabled = VidChatConfig.flexFecEnabled
 
-
         // Check Disable Audio Processing flag.
         val noAudioProcessing = VidChatConfig.audioProcessingDisabled
 
         val aecDump = VidChatConfig.aecDump
 
         val saveInputAudioToFile = VidChatConfig.saveInputAudioToFile
-
 
         // Check OpenSL ES enabled flag.
         val useOpenSLES = VidChatConfig.openSLESEnabled
