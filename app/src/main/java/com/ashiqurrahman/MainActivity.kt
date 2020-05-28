@@ -22,18 +22,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        VidChatConfig.AlertDialogUI.alertDialogBgColorRes = R.color.colorAccent
+        VidChatConfig.AlertDialogUI.alertDialogBgColorRes = R.color.colorPrimary
         VidChatConfig.AlertDialogUI.btnBgColorRes = R.color.colorPrimaryDark
         VidChatConfig.AlertDialogUI.iconDrawableRes = R.drawable.ic_launcher_foreground
         VidChatConfig.AlertDialogUI.btnTextColorRes = R.color.colorAccent
-        VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#095EB1"
-        VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#095EB1"
-
+        VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#86b0a3"
+        VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#FFFFFF"
         VidChatConfig.CustomButton.customBtnIcon = R.drawable.ic_launcher_foreground
         VidChatConfig.CustomButton.customBtnListener = View.OnClickListener {
             Toast.makeText(activity, "Clicked Custom button", Toast.LENGTH_LONG).show()
         }
-
 
         VidChat.requestVideoChatPermissions(this, PERMISSION_REQUEST_CODE)
         activity = this

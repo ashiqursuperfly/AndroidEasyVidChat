@@ -44,8 +44,6 @@ dependencies {
     // appRTC
     implementation 'org.webrtc:google-webrtc:1.0.30039'
     implementation files('libs/autobanh.jar')
-    implementation 'com.google.android.material:material:1.1.0'
-
 
 /*  testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

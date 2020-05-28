@@ -8,6 +8,7 @@ package com.ashiqurrahman.easyvidchat.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.GradientDrawable;
 import android.text.Html;
 import android.view.Window;
 import android.widget.Button;
@@ -31,12 +32,24 @@ public class UiUtil {
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, btnText, task);
         alertDialog.setOnShowListener(arg0 -> {
+
+            GradientDrawable shape =  new GradientDrawable();
+            shape.setCornerRadius(8f);
+            shape.setColor(activity.getResources().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getBtnBgColorRes()));
+
             Button btn =alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
             btn.setTextColor(activity.getResources().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getBtnTextColorRes()));
-            btn.setBackgroundColor(activity.getResources().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getBtnBgColorRes()));
+            btn.setBackground(shape);
 
+
+            GradientDrawable shape2 =  new GradientDrawable();
+            shape2.setCornerRadius(16f);
+
+            shape2.setColor(activity.getResources().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getAlertDialogBgColorRes()));
             Window window = alertDialog.getWindow();
-            if(window != null)window.setBackgroundDrawableResource(VidChatConfig.AlertDialogUI.INSTANCE.getAlertDialogBgColorRes());
+
+            window.setBackgroundDrawable(shape2);
+            //if(window != null)window.setBackgroundDrawableResource(VidChatConfig.AlertDialogUI.INSTANCE.getAlertDialogBgColorRes());
 
         });
         alertDialog.show();
