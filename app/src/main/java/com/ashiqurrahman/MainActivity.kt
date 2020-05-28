@@ -21,12 +21,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        VidChatConfig.AlertDialogUI.alertDialogBgColorRes = R.color.colorPrimary
+        VidChatConfig.AlertDialogUI.alertDialogBgColorRes = R.color.colorAccent
         VidChatConfig.AlertDialogUI.btnBgColorRes = R.color.colorPrimaryDark
         VidChatConfig.AlertDialogUI.iconDrawableRes = R.drawable.ic_launcher_foreground
-        VidChatConfig.AlertDialogUI.btnTextColorRes = R.color.colorPrimary
-        VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#FFFFFF"
-        VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#FFFFFF"
+        VidChatConfig.AlertDialogUI.btnTextColorRes = R.color.colorAccent
+        VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#095EB1"
+        VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#095EB1"
+
+
 
         VidChatConfig.VidChatIcons.switchCameraIcon = R.drawable.ic_launcher_foreground
 
