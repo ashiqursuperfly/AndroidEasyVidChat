@@ -25,5 +25,6 @@
     <string name="switch_camera">Switch Camera</string>
     <string name="capture_format_change_text">Capture Format Change</string>
     <string name="connect_description">Connect or Create Room</string>
+    <string name="custom_button">custom Button</string>
 
 </resources>

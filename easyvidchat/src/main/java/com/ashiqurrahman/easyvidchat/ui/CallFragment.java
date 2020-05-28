@@ -35,7 +35,7 @@ public class CallFragment extends Fragment {
     private TextView contactView;
     private ImageButton disconnectButton;
     private ImageButton cameraSwitchButton;
-    private ImageButton videoScalingButton;
+    private ImageButton customButton;
     private ImageButton toggleMuteButton;
     private TextView captureFormatText;
     private SeekBar captureFormatSlider;
@@ -51,7 +51,7 @@ public class CallFragment extends Fragment {
         contactView = controlView.findViewById(R.id.contact_name_call);
         disconnectButton = controlView.findViewById(R.id.button_call_disconnect);
         cameraSwitchButton = controlView.findViewById(R.id.button_call_switch_camera);
-        videoScalingButton = controlView.findViewById(R.id.button_call_scaling_mode);
+        customButton = controlView.findViewById(R.id.button_custom);
         toggleMuteButton = controlView.findViewById(R.id.button_call_toggle_mic);
         captureFormatText = controlView.findViewById(R.id.capture_format_text_call);
         captureFormatSlider = controlView.findViewById(R.id.capture_format_slider_call);
@@ -59,8 +59,9 @@ public class CallFragment extends Fragment {
         initDrawables();
         disconnectButton.setOnClickListener(view -> callEvents.onCallHangUp());
         cameraSwitchButton.setOnClickListener(view -> callEvents.onCameraSwitch());
-        videoScalingButton.setVisibility(View.GONE);
-        /*videoScalingButton.setOnClickListener(new View.OnClickListener() {
+
+        /*videoScalingButton.setVisibility(View.GONE);
+        videoScalingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (scalingType == ScalingType.SCALE_ASPECT_FILL) {
@@ -73,7 +74,9 @@ public class CallFragment extends Fragment {
                 callEvents.onVideoScalingSwitch(scalingType);
             }
         });
-        scalingType = ScalingType.SCALE_ASPECT_FILL;*/
+        scalingType = ScalingType.SCALE_ASPECT_FILL;
+        */
+
         toggleMuteButton.setOnClickListener(view -> {
             boolean enabled = callEvents.onToggleMic();
             toggleMuteButton.setAlpha(enabled ? 1.0f : 0.3f);
@@ -116,6 +119,11 @@ public class CallFragment extends Fragment {
        disconnectButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getDisconnectIcon());
        cameraSwitchButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getSwitchCameraIcon());
        toggleMuteButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getMicIcon());
-       videoScalingButton.setBackgroundResource(VidChatConfig.VidChatIcons.INSTANCE.getFullScreenIcon());
+
+       if (VidChatConfig.CustomButton.INSTANCE.getCustomBtnListener() != null) {
+          customButton.setBackgroundResource(VidChatConfig.CustomButton.INSTANCE.getCustomBtnIcon());
+          customButton.setOnClickListener(VidChatConfig.CustomButton.INSTANCE.getCustomBtnListener());
+          customButton.setVisibility(View.VISIBLE);
+       }
     }
 }

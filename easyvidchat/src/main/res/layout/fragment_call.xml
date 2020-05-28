@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -38,12 +39,14 @@
             android:layout_width="48dp"
             android:layout_height="48dp"/>
 
+<!--
         <ImageButton
             android:id="@+id/button_call_scaling_mode"
             android:background="@drawable/ic_fullscreen_exit"
             android:contentDescription="@string/disconnect_call"
             android:layout_width="48dp"
             android:layout_height="48dp"/>
+-->
 
         <ImageButton
             android:id="@+id/button_call_toggle_mic"
@@ -71,5 +74,16 @@
         android:layout_alignParentBottom="true"
         android:progress="50"
         android:layout_margin="8dp"/>
+
+    <ImageButton
+        android:id="@+id/button_custom"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_video_call"
+        android:contentDescription="@string/custom_button" />
+
 
 </RelativeLayout>

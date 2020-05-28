@@ -1,5 +1,6 @@
 package com.ashiqurrahman.easyvidchat.data
 
+import android.view.View
 import com.ashiqurrahman.easyvidchat.R
 
 /* Created by ashiq.buet16 **/
@@ -69,9 +70,17 @@ object VidChatConfig {
     object VidChatIcons {
         var micIcon: Int = R.drawable.ic_mic
         var disconnectIcon: Int = R.drawable.ic_disconnect
-        var fullScreenIcon: Int = R.drawable.ic_fullscreen
-        var fullScreenExitIcon: Int = R.drawable.ic_fullscreen_exit
         var switchCameraIcon: Int = R.drawable.ic_switch_camera
+    }
+
+    object CustomButton {
+        var customBtnIcon: Int = R.drawable.ic_fullscreen
+        var customBtnListener: View.OnClickListener? = null /*object : View.OnClickListener {
+            override fun onClick(v: View?) {
+
+            }
+
+        }*/
     }
 
 }

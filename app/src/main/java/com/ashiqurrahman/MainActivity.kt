@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.ashiqurrahman.easyvidchat.VidChat
 import com.ashiqurrahman.easyvidchat.data.VidChatConfig
@@ -28,9 +29,10 @@ class MainActivity : AppCompatActivity() {
         VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#095EB1"
         VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#095EB1"
 
-
-
-        VidChatConfig.VidChatIcons.switchCameraIcon = R.drawable.ic_launcher_foreground
+        VidChatConfig.CustomButton.customBtnIcon = R.drawable.ic_launcher_foreground
+        VidChatConfig.CustomButton.customBtnListener = View.OnClickListener {
+            Toast.makeText(activity, "Clicked Custom button", Toast.LENGTH_LONG).show()
+        }
 
 
         VidChat.requestVideoChatPermissions(this, PERMISSION_REQUEST_CODE)
