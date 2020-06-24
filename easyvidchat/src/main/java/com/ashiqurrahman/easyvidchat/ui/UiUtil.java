@@ -48,7 +48,9 @@ public class UiUtil {
             shape2.setColor(activity.getResources().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getAlertDialogBgColorRes()));
             Window window = alertDialog.getWindow();
 
-            window.setBackgroundDrawable(shape2);
+            if (window != null) {
+                window.setBackgroundDrawable(shape2);
+            }
             //if(window != null)window.setBackgroundDrawableResource(VidChatConfig.AlertDialogUI.INSTANCE.getAlertDialogBgColorRes());
 
         });

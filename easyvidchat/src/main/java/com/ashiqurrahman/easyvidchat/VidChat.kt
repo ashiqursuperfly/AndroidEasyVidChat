@@ -1,16 +1,18 @@
 package com.ashiqurrahman.easyvidchat
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.util.Log
-import com.ashiqurrahman.easyvidchat.data.VidChatConsts
 import com.ashiqurrahman.easyvidchat.data.VidChatConfig
-import com.ashiqurrahman.easyvidchat.ui.CallActivity
+import com.ashiqurrahman.easyvidchat.data.VidChatConsts
 import com.ashiqurrahman.easyvidchat.rtc_util.UrlValidator.validateUrl
+import com.ashiqurrahman.easyvidchat.ui.CallActivity
+import com.ashiqurrahman.easyvidchat.ui.UiUtil
 
 /* Created by ashiq.buet16 **/
 
@@ -22,6 +24,25 @@ object VidChat {
         activity: Activity,
         roomID: String
     ): Intent {
+
+       /* val list = getMissingPermissions(activity)
+        val sb = StringBuilder()
+        for (item in list) {
+            sb.append(item.substring("android.permission.".length, item.length)).append("\n")
+        }
+
+        if (sb.isNotEmpty()) {
+            UiUtil.showAlertDialog(
+                activity,
+                "Call Failed !!",
+                "Please Provide the permissions in order for video calling to work properly.\n${sb}",
+                "Cancel",
+                { dialog: DialogInterface, which: Int ->
+                    return@showAlertDialog
+                    dialog.cancel()
+                }
+            )
+        }*/
 
         val roomUrl = VidChatConsts.ROOM_BASE_URL
 
@@ -187,7 +208,12 @@ object VidChat {
         }
     }
 
-    private fun getMissingPermissions(activity: Activity): Array<String> {
+    fun isPermissionsAllowed(activity: Activity): Boolean {
+        if(getMissingPermissions(activity).isNotEmpty())return false
+        return true
+    }
+
+    fun getMissingPermissions(activity: Activity): Array<String> {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return arrayOf()
         }
