@@ -49,11 +49,11 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        for ((index, item) in grantResults.withIndex()) {
-            if(item != PackageManager.PERMISSION_GRANTED) {
-                Log.e("VidChatPermissions", "Permission Denied ${permissions[index]}")
-            }
+        if (!VidChat.isPermissionsAllowed(this)) {
+            Toast.makeText(this, "Error: Please Provide Videochat permissions !!", Toast.LENGTH_SHORT).show()
+            finish()
         }
+
     }
 
     override fun onActivityResult(

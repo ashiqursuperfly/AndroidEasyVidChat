@@ -1,9 +1,8 @@
 package com.ashiqurrahman.easyvidchat
 
+import android.Manifest
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -12,11 +11,20 @@ import com.ashiqurrahman.easyvidchat.data.VidChatConfig
 import com.ashiqurrahman.easyvidchat.data.VidChatConsts
 import com.ashiqurrahman.easyvidchat.rtc_util.UrlValidator.validateUrl
 import com.ashiqurrahman.easyvidchat.ui.CallActivity
-import com.ashiqurrahman.easyvidchat.ui.UiUtil
 
 /* Created by ashiq.buet16 **/
 
 object VidChat {
+
+    private val permissions = arrayOf(
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.CAMERA,
+        Manifest.permission.CHANGE_NETWORK_STATE,
+        Manifest.permission.MODIFY_AUDIO_SETTINGS,
+        Manifest.permission.INTERNET,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.ACCESS_NETWORK_STATE
+    )
 
     const val TAG = "VidChatInit"
 
@@ -24,25 +32,6 @@ object VidChat {
         activity: Activity,
         roomID: String
     ): Intent {
-
-       /* val list = getMissingPermissions(activity)
-        val sb = StringBuilder()
-        for (item in list) {
-            sb.append(item.substring("android.permission.".length, item.length)).append("\n")
-        }
-
-        if (sb.isNotEmpty()) {
-            UiUtil.showAlertDialog(
-                activity,
-                "Call Failed !!",
-                "Please Provide the permissions in order for video calling to work properly.\n${sb}",
-                "Cancel",
-                { dialog: DialogInterface, which: Int ->
-                    return@showAlertDialog
-                    dialog.cancel()
-                }
-            )
-        }*/
 
         val roomUrl = VidChatConsts.ROOM_BASE_URL
 
@@ -201,43 +190,27 @@ object VidChat {
             // Dynamic permissions are not required before Android M.
             return
         }
-        val missingPermissions = getMissingPermissions(activity)
 
-        if (missingPermissions.isNotEmpty()) {
-            activity.requestPermissions(missingPermissions,requestCode)
-        }
+        activity.requestPermissions(getVideoCallPermissions(), requestCode)
     }
 
     fun isPermissionsAllowed(activity: Activity): Boolean {
-        if(getMissingPermissions(activity).isNotEmpty())return false
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            // Dynamic permissions are not required before Android M.
+            return true
+        }
+
+        for (item in permissions) {
+            if (activity.checkSelfPermission(item) != PackageManager.PERMISSION_GRANTED){
+               return false
+            }
+        }
+
         return true
     }
 
-    fun getMissingPermissions(activity: Activity): Array<String> {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return arrayOf()
-        }
-        val info: PackageInfo = try {
-            activity.packageManager.getPackageInfo(
-                activity.packageName,
-                PackageManager.GET_PERMISSIONS
-            )
-        } catch (e: PackageManager.NameNotFoundException) {
-            Log.w(TAG,"Failed to retrieve permissions.")
-            return arrayOf()
-        }
-        if (info.requestedPermissions == null) {
-            Log.w(TAG,"No requested permissions.")
-            return arrayOf()
-        }
-        val missingPermissions = ArrayList<String>()
-
-        for (i in info.requestedPermissions.indices) {
-            if (info.requestedPermissionsFlags[i] and PackageInfo.REQUESTED_PERMISSION_GRANTED == 0) {
-                missingPermissions.add(info.requestedPermissions[i])
-            }
-        }
-        Log.d(TAG, "Missing permissions: $missingPermissions")
-        return missingPermissions.toTypedArray()
+    fun getVideoCallPermissions(): Array<String> {
+        return permissions
     }
 }

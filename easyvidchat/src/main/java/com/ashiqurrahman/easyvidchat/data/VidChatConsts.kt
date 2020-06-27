@@ -1,8 +1,11 @@
 package com.ashiqurrahman.easyvidchat.data
 
+import android.Manifest
+
 /* Created by ashiq.buet16 **/
 
 object VidChatConsts {
+
     const val DEFAULT_DEBUG_RUNTIME = 10*60*1000
 
     const val ROOM_BASE_URL = "https://appr.tc"
@@ -16,7 +19,7 @@ object VidChatConsts {
     const val EXTRA_VIDEO_WIDTH = "org.appspot.apprtc.VIDEO_WIDTH"
     const val EXTRA_VIDEO_HEIGHT = "org.appspot.apprtc.VIDEO_HEIGHT"
     const val EXTRA_VIDEO_FPS = "org.appspot.apprtc.VIDEO_FPS"
-    const val EXTRA_VIDEO_CAPTUREQUALITYSLIDER_ENABLED = "org.appsopt.apprtc.VIDEO_CAPTUREQUALITYSLIDER"
+    const val EXTRA_VIDEO_CAPTUREQUALITYSLIDER_ENABLED = "org.appspot.apprtc.VIDEO_CAPTUREQUALITYSLIDER"
     const val EXTRA_VIDEO_BITRATE = "org.appspot.apprtc.VIDEO_BITRATE"
     const val EXTRA_VIDEOCODEC = "org.appspot.apprtc.VIDEOCODEC"
     const val EXTRA_HWCODEC_ENABLED = "org.appspot.apprtc.HWCODEC"
