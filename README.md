@@ -23,8 +23,9 @@ kotlinOptions {
   ```
 - Add dependency in app-level build.gradle
 ```groovy
-implementation 'com.github.ashiqursuperfly:AndroidEasyVidChat:1.0.0'
+implementation 'com.github.ashiqursuperfly:AndroidEasyVidChat:x.x.x'
 ```
+Make sure you use the latest release version, this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Add this in manifest
 ```xml
 <activity android:name="com.ashiqurrahman.easyvidchat.ui.CallActivity" />
@@ -65,7 +66,7 @@ override fun onActivityResult(
 ## Advanced Usage
 Please go through the [Wiki](https://github.com/ashiqursuperfly/AndroidEasyVidChat/wiki/Advanced-Usage) for a list of advanced options 
 
-#### Contributing
+## Contributing
 - Create an issue with appropriate description (explain which behaviour you want to change)
 - Add either one of the following labels: bug, enhancement, documentation, question
 - Prefix the branch name with the issue label and issue number like so: label/number-branchName e.g: bug/3-Hour24ViewNotVisible
