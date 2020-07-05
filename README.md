@@ -65,5 +65,11 @@ override fun onActivityResult(
 ## Advanced Usage
 Please go through the [Wiki](https://github.com/ashiqursuperfly/AndroidEasyVidChat/wiki/Advanced-Usage) for a list of advanced options 
 
+#### Contributing
+- Create an issue with appropriate description (explain which behaviour you want to change)
+- Add either one of the following labels: bug, enhancement, documentation, question
+- Prefix the branch name with the issue label and issue number like so: label/number-branchName e.g: bug/3-Hour24ViewNotVisible
+- send a PR
+
 #### This code makes use of this <a href="https://appr.tc/">https://appr.tc/</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
 
