@@ -1,7 +1,7 @@
 # Easy Android Video Call [![](https://jitpack.io/v/ashiqursuperfly/AndroidEasyVidChat.svg)](https://jitpack.io/#ashiqursuperfly/AndroidEasyVidChat)
 Add video calling to your android application using just a few lines of code
 
-## Sample (Download the sample app)
+## Download the sample app
 <a href='https://play.google.com/store/apps/details?id=com.ashiqurrahman.apprtc&hl=en&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="80" width="206" /></a>
 
 ## Setup
