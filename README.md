@@ -75,5 +75,5 @@ Please go through the [Wiki](https://github.com/ashiqursuperfly/AndroidEasyVidCh
 - Prefix the branch name with the issue label and issue number like so: label/number-branchName e.g: bug/3-Hour24ViewNotVisible
 - send a PR
 
-#### This code makes use of this <a href="https://appr.tc/">https://appr.tc/</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
+#### This project makes use of this <a href="https://appr.tc/">https://appr.tc/</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
 
