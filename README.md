@@ -74,7 +74,8 @@ Please go through the [Wiki](https://github.com/ashiqursuperfly/AndroidEasyVidCh
 
 ## Sample
 - Download the sample app on play store:
-<a href='https://play.google.com/store/apps/details?id=com.ashiqurrahman.apprtc&hl=en&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="50" width="130" /></a>
+
+<a href='https://play.google.com/store/apps/details?id=com.ashiqurrahman.apprtc&hl=en&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="80" width="206" /></a>
 
 #### This code makes use of this <a href="https://appr.tc/">https://appr.tc/</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
 
