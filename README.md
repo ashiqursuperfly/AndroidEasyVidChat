@@ -72,5 +72,9 @@ Please go through the [Wiki](https://github.com/ashiqursuperfly/AndroidEasyVidCh
 - Prefix the branch name with the issue label and issue number like so: label/number-branchName e.g: bug/3-Hour24ViewNotVisible
 - send a PR
 
+## Sample
+- Download the sample app on play store:
+<a href='https://play.google.com/store/apps/details?id=com.ashiqurrahman.apprtc&hl=en&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+
 #### This code makes use of this <a href="https://appr.tc/">https://appr.tc/</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
 
