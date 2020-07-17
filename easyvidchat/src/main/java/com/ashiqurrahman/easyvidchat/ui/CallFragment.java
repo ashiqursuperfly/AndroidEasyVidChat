@@ -13,6 +13,7 @@ package com.ashiqurrahman.easyvidchat.ui;
 import android.app.Activity;
 
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +21,20 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+
 import com.ashiqurrahman.easyvidchat.R;
 import com.ashiqurrahman.easyvidchat.data.VidChatConfig;
 import com.ashiqurrahman.easyvidchat.data.VidChatConsts;
+import com.ashiqurrahman.easyvidchat.rtc_util.CallDurationUtil;
 import com.ashiqurrahman.easyvidchat.rtc_util.CaptureQualityController;
+import com.ashiqurrahman.easyvidchat.rtc_util.CustomTimerTask;
 import com.ashiqurrahman.easyvidchat.rtc_util.OnCallEvents;
 
 import org.webrtc.RendererCommon.ScalingType;
+
+import java.util.Timer;
 
 /**
  * Fragment for call control.
@@ -42,6 +50,8 @@ public class CallFragment extends Fragment {
     public OnCallEvents callEvents;
     private ScalingType scalingType;
     private boolean videoCallEnabled = true;
+    private long mCallStartTimeStamp = -1;
+    private Timer callDurationTimer;
 
     @Override
     public View onCreateView(
@@ -92,6 +102,9 @@ public class CallFragment extends Fragment {
         if (args != null) {
             String contactName = args.getString(VidChatConsts.EXTRA_ROOMID);
             contactView.setText(contactName);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                contactView.setTextColor(getActivity().getColor(VidChatConfig.AlertDialogUI.INSTANCE.getBtnBgColorRes()));
+            }
             videoCallEnabled = args.getBoolean(VidChatConsts.EXTRA_VIDEO_CALL, true);
             captureSliderEnabled = videoCallEnabled
                     && args.getBoolean(VidChatConsts.EXTRA_VIDEO_CAPTUREQUALITYSLIDER_ENABLED, false);
@@ -106,6 +119,20 @@ public class CallFragment extends Fragment {
             captureFormatText.setVisibility(View.GONE);
             captureFormatSlider.setVisibility(View.GONE);
         }
+
+        if(mCallStartTimeStamp == -1)mCallStartTimeStamp = System.currentTimeMillis();
+        CustomTimerTask callDurationPeriodicTask = new CustomTimerTask();
+        callDurationPeriodicTask.setCallback(
+                () -> {
+                    String s = CallDurationUtil.convertToFormattedString(System.currentTimeMillis()-mCallStartTimeStamp);
+                    getActivity().runOnUiThread(
+                            () -> contactView.setText(s)
+                    );
+                }
+        );
+        callDurationTimer = new Timer();
+        callDurationTimer.scheduleAtFixedRate(callDurationPeriodicTask, 2000L, 1000L);
+
     }
 
     // TODO(sakal): Replace with onAttach(Context) once we only support API level 23+.
@@ -125,5 +152,11 @@ public class CallFragment extends Fragment {
           customButton.setOnClickListener(VidChatConfig.CustomButton.INSTANCE.getCustomBtnListener());
           customButton.setVisibility(View.VISIBLE);
        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        callDurationTimer.cancel();
     }
 }

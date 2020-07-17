@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/contact_name_call"
@@ -11,6 +12,8 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/buttons_call_container"
         android:textSize="24sp"
+        android:textColor="@android:color/black"
+        tools:text="00:10:11"
         android:layout_margin="8dp"/>
 
     <LinearLayout
