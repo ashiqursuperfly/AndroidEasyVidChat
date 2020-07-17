@@ -168,7 +168,7 @@ public class RoomParametersFetcher {
         connection.setReadTimeout(TURN_HTTP_TIMEOUT_MS);
         int responseCode = connection.getResponseCode();
         if (responseCode != 200) {
-            throw new IOException("Non-200 response when requesting TURN server from " + url + " : "
+            throw new IOException("Non-200 ("+ responseCode +")response when requesting TURN server from " + url + " : "
                     + connection.getHeaderField(null));
         }
         InputStream responseStream = connection.getInputStream();

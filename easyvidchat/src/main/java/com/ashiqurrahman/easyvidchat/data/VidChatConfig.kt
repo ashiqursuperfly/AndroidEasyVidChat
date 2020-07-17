@@ -7,6 +7,8 @@ import com.ashiqurrahman.easyvidchat.R
 
 object VidChatConfig {
 
+    const val HTTP_TIMEOUT_MS = 8000
+
     var videoCallEnabled = true
     var screenCaptureEnabled = false
 

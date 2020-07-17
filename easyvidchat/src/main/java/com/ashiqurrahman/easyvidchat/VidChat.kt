@@ -23,7 +23,8 @@ object VidChat {
         Manifest.permission.MODIFY_AUDIO_SETTINGS,
         Manifest.permission.INTERNET,
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        Manifest.permission.ACCESS_NETWORK_STATE
+        Manifest.permission.ACCESS_NETWORK_STATE,
+        Manifest.permission.BLUETOOTH
     )
 
     const val TAG = "VidChatInit"

@@ -10,19 +10,21 @@
 
 package com.ashiqurrahman.easyvidchat.rtc_util;
 
+import com.ashiqurrahman.easyvidchat.data.VidChatConfig;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
  * Asynchronous http requests implementation.
  */
 public class AsyncHttpURLConnection {
-    private static final int HTTP_TIMEOUT_MS = 8000;
     private static final String HTTP_ORIGIN = "https://appr.tc";
     private final String method;
     private final String url;
@@ -59,13 +61,13 @@ public class AsyncHttpURLConnection {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
             byte[] postData = new byte[0];
             if (message != null) {
-                postData = message.getBytes("UTF-8");
+                postData = message.getBytes(StandardCharsets.UTF_8);
             }
             connection.setRequestMethod(method);
             connection.setUseCaches(false);
             connection.setDoInput(true);
-            connection.setConnectTimeout(HTTP_TIMEOUT_MS);
-            connection.setReadTimeout(HTTP_TIMEOUT_MS);
+            connection.setConnectTimeout(VidChatConfig.HTTP_TIMEOUT_MS);
+            connection.setReadTimeout(VidChatConfig.HTTP_TIMEOUT_MS);
             // TODO(glaznev) - query request origin from pref_room_server_url_key preferences.
             connection.addRequestProperty("origin", HTTP_ORIGIN);
             boolean doOutput = false;
@@ -88,7 +90,7 @@ public class AsyncHttpURLConnection {
             // Get response.
             int responseCode = connection.getResponseCode();
             if (responseCode != 200) {
-                events.onHttpError("Non-200 response to " + method + " to URL: " + url + " : "
+                events.onHttpError("Non-200 ("+ responseCode +") response to " + method + " to URL: " + url + " : "
                         + connection.getHeaderField(null));
                 connection.disconnect();
                 return;
