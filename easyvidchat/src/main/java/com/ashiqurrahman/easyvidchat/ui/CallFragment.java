@@ -157,6 +157,6 @@ public class CallFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        callDurationTimer.cancel();
+        if(callDurationTimer != null)callDurationTimer.cancel();
     }
 }

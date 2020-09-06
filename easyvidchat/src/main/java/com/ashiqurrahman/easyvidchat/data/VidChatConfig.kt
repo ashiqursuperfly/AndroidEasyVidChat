@@ -69,6 +69,11 @@ object VidChatConfig {
         var textMsgColorHexSixDigitString ="#000000"
     }
 
+    object CustomErrorMsg {
+        var errorTitle: String? = null
+        var errorMessage: String? = null
+    }
+
     object VidChatIcons {
         var micIcon: Int = R.drawable.ic_mic
         var disconnectIcon: Int = R.drawable.ic_disconnect

@@ -80,7 +80,7 @@ import static com.ashiqurrahman.easyvidchat.data.VidChatConsts.*;
 public class CallActivity extends Activity implements AppRTCClient.SignalingEvents,
         PeerConnectionClient.PeerConnectionEvents,
         OnCallEvents {
-    
+
     private static String TAG = "CallActivity";
 
     private static class ProxyVideoSink implements VideoSink {
@@ -101,7 +101,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     }
 
     // List of mandatory application permissions.
-    String [] MANDATORY_PERMISSIONS = new String[]{"android.permission.MODIFY_AUDIO_SETTINGS", "android.permission.RECORD_AUDIO", "android.permission.INTERNET"};
+    String[] MANDATORY_PERMISSIONS = new String[]{"android.permission.MODIFY_AUDIO_SETTINGS", "android.permission.RECORD_AUDIO", "android.permission.INTERNET"};
 
     private final ProxyVideoSink remoteProxyRenderer = new ProxyVideoSink();
     private final ProxyVideoSink localProxyVideoSink = new ProxyVideoSink();
@@ -198,10 +198,10 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         pipRenderer.setEnableHardwareScaler(true /* enabled */);
         fullscreenRenderer.setEnableHardwareScaler(false /* enabled */);
         // Start with local feed in fullscreen and swap it to the pip when the call is connected.
-        if(!screencaptureEnabled)setSwappedFeeds(true /* isSwappedFeeds */);
+        if (!screencaptureEnabled) setSwappedFeeds(true /* isSwappedFeeds */);
         else setSwappedFeeds(false);
         // Check for mandatory permissions.
-        for (String permission :MANDATORY_PERMISSIONS) {
+        for (String permission : MANDATORY_PERMISSIONS) {
             if (checkCallingOrSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                 logAndToast("Permission " + permission + " is not granted");
                 setResult(RESULT_CANCELED);
@@ -306,7 +306,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         } else {
             startCall();
         }
-        if(screencaptureEnabled)pipRenderer.setVisibility(View.GONE);
+        if (screencaptureEnabled) pipRenderer.setVisibility(View.GONE);
     }
 
     @TargetApi(17)
@@ -522,7 +522,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         final long delta = System.currentTimeMillis() - callStartedTimeMs;
         Log.i(TAG, "Call connected: delay=" + delta + "ms");
         if (peerConnectionClient == null || isError) {
-            Log.w(TAG,"Call is connected in closed or error state");
+            Log.w(TAG, "Call is connected in closed or error state");
             return;
         }
         // Enable statistics callback.
@@ -577,6 +577,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     }
 
     private void disconnectWithErrorMessage(final String errorMessage) {
+        String errorTitle = VidChatConfig.CustomErrorMsg.INSTANCE.getErrorTitle() != null ? VidChatConfig.CustomErrorMsg.INSTANCE.getErrorTitle() : getText(R.string.channel_error_title).toString();
+        String errorMsg = VidChatConfig.CustomErrorMsg.INSTANCE.getErrorMessage() != null ? VidChatConfig.CustomErrorMsg.INSTANCE.getErrorMessage() : errorMessage;
         if (commandLineRun || !activityRunning) {
             Log.e(TAG, "Critical error:" + errorMessage);
             disconnect();
@@ -584,10 +586,10 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
             UiUtil.showAlertDialog(
                     this,
-                    getText(R.string.channel_error_title).toString(),
-                    errorMessage,
+                    errorTitle,
+                    errorMsg,
                     getText(R.string.ok).toString(),
-                    (dialog,which) -> {
+                    (dialog, which) -> {
                         dialog.cancel();
                         disconnect();
                     }
@@ -840,7 +842,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     }
 
     @Override
-    public void onBackPressed(){
-        Toast.makeText(this,"Please Press The Cross Button To Exit.!", Toast.LENGTH_SHORT).show();
+    public void onBackPressed() {
+        Toast.makeText(this, "Please Press The Cross Button To Exit.!", Toast.LENGTH_SHORT).show();
     }
 }
