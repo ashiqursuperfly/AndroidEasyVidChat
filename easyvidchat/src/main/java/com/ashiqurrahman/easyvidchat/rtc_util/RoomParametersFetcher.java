@@ -12,6 +12,8 @@ package com.ashiqurrahman.easyvidchat.rtc_util;
 
 import android.util.Log;
 
+import com.ashiqurrahman.easyvidchat.data.CustomTURNSTUNConfig;
+import com.ashiqurrahman.easyvidchat.data.VidChatConfig;
 import com.ashiqurrahman.easyvidchat.rtc_util.AsyncHttpURLConnection.AsyncHttpEvents;
 
 import org.json.JSONArray;
@@ -124,35 +126,60 @@ public class RoomParametersFetcher {
             Log.d(TAG, "Initiator: " + initiator);
             Log.d(TAG, "WSS url: " + wssUrl);
             Log.d(TAG, "WSS POST url: " + wssPostUrl);
-            List<PeerConnection.IceServer> iceServers =
-                    iceServersFromPCConfigJSON(roomJson.getString("pc_config"));
-            boolean isTurnPresent = false;
-            for (PeerConnection.IceServer server : iceServers) {
-                Log.d(TAG, "IceServer: " + server);
-                for (String uri : server.urls) {
-                    if (uri.startsWith("turn:")) {
-                        isTurnPresent = true;
-                        break;
+            List<PeerConnection.IceServer> iceServers = iceServersFromPCConfigJSON(roomJson.getString("pc_config"));
+
+            if (VidChatConfig.INSTANCE.getCustomTURNSTUNConfig() != null) {
+                // Request TURN servers.
+                CustomTURNSTUNConfig config = VidChatConfig.INSTANCE.getCustomTURNSTUNConfig();
+                String turnUrl = config.getTurnServerUrl();
+                String username = config.getUsername();
+                String credential = config.getCredential();
+                String stunUrl = config.getStunServerUrl();
+                PeerConnection.IceServer turnServer =
+                        PeerConnection.IceServer.builder(turnUrl)
+                                .setUsername(username)
+                                .setPassword(credential)
+                                .createIceServer();
+                iceServers.add(turnServer);
+
+                PeerConnection.IceServer stunServer =
+                        PeerConnection.IceServer.builder(stunUrl)
+                                .setUsername(username)
+                                .setPassword(credential)
+                                .createIceServer();
+                iceServers.add(stunServer);
+
+            } else {
+                boolean isTurnPresent = false;
+                for (PeerConnection.IceServer server : iceServers) {
+                    Log.d(TAG, "IceServer: " + server);
+                    for (String uri : server.urls) {
+                        if (uri.startsWith("turn:")) {
+                            isTurnPresent = true;
+                            break;
+                        }
                     }
                 }
-            }
-            // Request TURN servers.
-            if (!isTurnPresent && !roomJson.optString("ice_server_url").isEmpty()) {
-                List<PeerConnection.IceServer> turnServers =
-                        requestTurnServers(roomJson.getString("ice_server_url"));
-                for (PeerConnection.IceServer turnServer : turnServers) {
-                    Log.d(TAG, "TurnServer: " + turnServer);
-                    iceServers.add(turnServer);
+                // Request TURN servers.
+                try {
+                    if (!isTurnPresent && !roomJson.optString("ice_server_url").isEmpty()) {
+                        List<PeerConnection.IceServer> turnServers = requestTurnServers(roomJson.getString("ice_server_url"));
+                        for (PeerConnection.IceServer turnServer : turnServers) {
+                            Log.d(TAG, "TurnServer: " + turnServer);
+                            iceServers.add(turnServer);
+                        }
+                    }
+                } catch (IOException e) {
+                    events.onSignalingParametersError("Room IO error: " + e.toString());
                 }
             }
-            AppRTCClient.SignalingParameters params = new AppRTCClient.SignalingParameters(
-                    iceServers, initiator, clientId, wssUrl, wssPostUrl, offerSdp, iceCandidates);
+            AppRTCClient.SignalingParameters params = new AppRTCClient.SignalingParameters(iceServers, initiator, clientId, wssUrl, wssPostUrl, offerSdp, iceCandidates);
             events.onSignalingParametersReady(params);
         } catch (JSONException e) {
             events.onSignalingParametersError("Room JSON parsing error: " + e.toString());
-        } catch (IOException e) {
-            events.onSignalingParametersError("Room IO error: " + e.toString());
-        }
+        }/* catch (IOException e) {
+
+        }*/
     }
 
     // Requests & returns a TURN ICE Server based on a request URL.  Must be run

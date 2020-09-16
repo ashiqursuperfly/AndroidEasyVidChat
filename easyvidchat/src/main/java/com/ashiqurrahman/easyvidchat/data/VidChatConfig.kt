@@ -51,6 +51,9 @@ object VidChatConfig {
     var isOrdered = true
     var isNegotiated = false
 
+    // configurable custom turn and stun server url.
+    var customTURNSTUNConfig: CustomTURNSTUNConfig? = null
+
     const val speakerPhone = "auto"
 
     const val maxReTransmitTimeMillis = -1
@@ -91,6 +94,13 @@ object VidChatConfig {
     }
 
 }
+
+data class CustomTURNSTUNConfig(
+    var turnServerUrl: String,
+    var username: String,
+    var credential: String,
+    var stunServerUrl: String
+)
 
 enum class VideoCodec(var codecName: String) {
     VP8("VP8"), VP9("VP9"), H264_BASELINE("H264 Baseline"), H264_HIGH("H264 High")
