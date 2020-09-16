@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">AndroidEasyVidChat</string>
-    <string name="error_bangla_title">ত্রুটিপূর্ণ সংযোগ</string>
-    <string name="error_bangla_body">দুঃখিত, এই মুহূর্তে ভিডিও কল সংযোগ সম্ভব হচ্ছে না, কিছুক্ষণ পর আবার চেষ্টা করুন</string>
+    <string name="error_bangla_title">This is a custom error message title</string>
+    <string name="error_bangla_body">This is a custom error message body. But, you can disable this by setting VidChatConfig.CustomErrorMessage fields to null to get a more detailed debug information for your error</string>
 </resources>

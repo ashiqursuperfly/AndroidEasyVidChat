@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         VidChatConfig.AlertDialogUI.btnTextColorRes = R.color.colorAccent
         VidChatConfig.AlertDialogUI.textMsgColorHexSixDigitString = "#86b0a3"
         VidChatConfig.AlertDialogUI.titleTextColorHexSixDigitString = "#FFFFFF"
-        VidChatConfig.CustomErrorMsg.errorTitle = getString(R.string.error_bangla_title)
-        VidChatConfig.CustomErrorMsg.errorMessage = getString(R.string.error_bangla_body)
+        // VidChatConfig.CustomErrorMsg.errorTitle = getString(R.string.error_bangla_title)
+        // VidChatConfig.CustomErrorMsg.errorMessage = getString(R.string.error_bangla_body)
 
         VidChatConfig.CustomButton.customBtnIcon = R.drawable.ic_launcher_foreground
         VidChatConfig.CustomButton.customBtnListener = View.OnClickListener {
