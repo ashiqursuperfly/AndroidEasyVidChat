@@ -69,5 +69,5 @@ override fun onActivityResult(
 ## Wiki
 Please go through the [Wiki](https://github.com/ashiqursuperfly/AndroidEasyVidChat/wiki) for **advanced usages**, **contributing guide** and more. 
 
-#### This project makes use of this <a href="https://appr.tc/">https://appr.tc/</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
+This project makes use of the <a href="https://appr.tc/">apprtc project</a> and some of the source codes in <a href="https://chromium.googlesource.com/">chromium.googlesource</a>
 
