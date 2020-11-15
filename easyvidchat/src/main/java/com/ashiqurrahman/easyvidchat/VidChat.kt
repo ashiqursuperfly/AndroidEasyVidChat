@@ -34,7 +34,7 @@ object VidChat {
         roomID: String
     ): Intent {
 
-        val roomUrl = VidChatConsts.ROOM_BASE_URL
+        val roomUrl = if (VidChatConfig.customRoomServerUrl == null) "https://appr.tc" else VidChatConfig.customRoomServerUrl.toString()
 
         // Video call enabled flag.
         val videoCallEnabled = VidChatConfig.videoCallEnabled
@@ -159,7 +159,10 @@ object VidChat {
             intent.putExtra(VidChatConsts.EXTRA_FLEXFEC_ENABLED, flexfecEnabled)
             intent.putExtra(VidChatConsts.EXTRA_NOAUDIOPROCESSING_ENABLED, noAudioProcessing)
             intent.putExtra(VidChatConsts.EXTRA_AECDUMP_ENABLED, aecDump)
-            intent.putExtra(VidChatConsts.EXTRA_SAVE_INPUT_AUDIO_TO_FILE_ENABLED, saveInputAudioToFile)
+            intent.putExtra(
+                VidChatConsts.EXTRA_SAVE_INPUT_AUDIO_TO_FILE_ENABLED,
+                saveInputAudioToFile
+            )
             intent.putExtra(VidChatConsts.EXTRA_OPENSLES_ENABLED, useOpenSLES)
             intent.putExtra(VidChatConsts.EXTRA_DISABLE_BUILT_IN_AEC, disableBuiltInAEC)
             intent.putExtra(VidChatConsts.EXTRA_DISABLE_BUILT_IN_AGC, disableBuiltInAGC)
@@ -171,7 +174,10 @@ object VidChat {
             intent.putExtra(VidChatConsts.EXTRA_TRACING, tracing)
             intent.putExtra(VidChatConsts.EXTRA_ENABLE_RTCEVENTLOG, rtcEventLogEnabled)
             intent.putExtra(VidChatConsts.EXTRA_CMDLINE, VidChatConfig.isDebug)
-            intent.putExtra(VidChatConsts.EXTRA_RUNTIME, if (VidChatConfig.isDebug) VidChatConsts.DEFAULT_DEBUG_RUNTIME else 0)
+            intent.putExtra(
+                VidChatConsts.EXTRA_RUNTIME,
+                if (VidChatConfig.isDebug) VidChatConsts.DEFAULT_DEBUG_RUNTIME else 0
+            )
             intent.putExtra(VidChatConsts.EXTRA_DATA_CHANNEL_ENABLED, dataChannelEnabled)
             if (dataChannelEnabled) {
                 intent.putExtra(VidChatConsts.EXTRA_ORDERED, ordered)
@@ -186,7 +192,7 @@ object VidChat {
         return intent
     }
 
-    fun requestVideoChatPermissions(activity: Activity,requestCode: Int) {
+    fun requestVideoChatPermissions(activity: Activity, requestCode: Int) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Dynamic permissions are not required before Android M.
             return

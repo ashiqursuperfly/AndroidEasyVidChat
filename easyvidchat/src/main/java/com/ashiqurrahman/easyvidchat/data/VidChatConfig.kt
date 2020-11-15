@@ -53,6 +53,7 @@ object VidChatConfig {
 
     // configurable custom turn and stun server url.
     var customTURNSTUNConfig: CustomTURNSTUNConfig? = null
+    var customRoomServerUrl: String? = null
 
     const val speakerPhone = "auto"
 

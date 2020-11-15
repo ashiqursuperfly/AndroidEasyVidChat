@@ -25,7 +25,7 @@ import java.util.Scanner;
  * Asynchronous http requests implementation.
  */
 public class AsyncHttpURLConnection {
-    private static final String HTTP_ORIGIN = "https://appr.tc";
+    private static final String HTTP_ORIGIN = (VidChatConfig.INSTANCE.getCustomRoomServerUrl() == null) ? "https://appr.tc" : VidChatConfig.INSTANCE.getCustomRoomServerUrl();
     private final String method;
     private final String url;
     private final String message;
@@ -90,7 +90,7 @@ public class AsyncHttpURLConnection {
             // Get response.
             int responseCode = connection.getResponseCode();
             if (responseCode != 200) {
-                events.onHttpError("Non-200 ("+ responseCode +") response to " + method + " to URL: " + url + " : "
+                events.onHttpError("Non-200 (" + responseCode + ") response to " + method + " to URL: " + url + " : "
                         + connection.getHeaderField(null));
                 connection.disconnect();
                 return;

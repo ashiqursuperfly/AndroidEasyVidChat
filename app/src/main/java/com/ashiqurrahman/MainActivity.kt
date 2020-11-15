@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.ashiqurrahman.easyvidchat.VidChat
+import com.ashiqurrahman.easyvidchat.data.CustomTURNSTUNConfig
 import com.ashiqurrahman.easyvidchat.data.VidChatConfig
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,6 +35,16 @@ class MainActivity : AppCompatActivity() {
         VidChatConfig.CustomButton.customBtnListener = View.OnClickListener {
             Toast.makeText(this, "Clicked Custom button", Toast.LENGTH_LONG).show()
         }
+
+        val customTURNSTUNConfig = CustomTURNSTUNConfig(
+            turnServerUrl = "turn:103.147.168.11:3478",
+            stunServerUrl = "stun:103.147.168.11:3478",
+            username = "askdoctorbd",
+            credential = "swot24434"
+        )
+
+        VidChatConfig.customRoomServerUrl = "https://103.147.168.11:8081"
+        VidChatConfig.customTURNSTUNConfig = customTURNSTUNConfig
 
         VidChat.requestVideoChatPermissions(this, PERMISSION_REQUEST_CODE)
 

@@ -126,7 +126,7 @@ public class RoomParametersFetcher {
             Log.d(TAG, "Initiator: " + initiator);
             Log.d(TAG, "WSS url: " + wssUrl);
             Log.d(TAG, "WSS POST url: " + wssPostUrl);
-            List<PeerConnection.IceServer> iceServers = iceServersFromPCConfigJSON(roomJson.getString("pc_config"));
+            List<PeerConnection.IceServer> iceServers = (VidChatConfig.INSTANCE.getCustomRoomServerUrl() == null)?iceServersFromPCConfigJSON(roomJson.getString("pc_config")):iceServersFromPCConfigJSONCustom(roomJson.getString("pc_config"));
 
             if (VidChatConfig.INSTANCE.getCustomTURNSTUNConfig() != null) {
                 // Request TURN servers.
@@ -190,7 +190,7 @@ public class RoomParametersFetcher {
         Log.d(TAG, "Request TURN from: " + url);
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setDoOutput(true);
-        connection.setRequestProperty("REFERER", "https://appr.tc");
+        connection.setRequestProperty("REFERER", (VidChatConfig.INSTANCE.getCustomRoomServerUrl() == null)?"https://appr.tc":VidChatConfig.INSTANCE.getCustomRoomServerUrl());
         connection.setConnectTimeout(TURN_HTTP_TIMEOUT_MS);
         connection.setReadTimeout(TURN_HTTP_TIMEOUT_MS);
         int responseCode = connection.getResponseCode();
@@ -238,6 +238,26 @@ public class RoomParametersFetcher {
                             .setPassword(credential)
                             .createIceServer();
             ret.add(turnServer);
+        }
+        return ret;
+    }
+
+    private List<PeerConnection.IceServer> iceServersFromPCConfigJSONCustom(String pcConfig)
+            throws JSONException {
+        JSONObject json = new JSONObject(pcConfig);
+        JSONArray servers = json.getJSONArray("iceServers");
+        List<PeerConnection.IceServer> ret = new ArrayList<>();
+        for (int i = 0; i < servers.length(); ++i) {
+            JSONObject server = servers.getJSONObject(i);
+            String url = server.getString("urls");
+            String credential = server.has("credential") ? server.getString("credential") : "";
+            String username = server.has("username") ? server.getString("username") : "";
+            PeerConnection.IceServer turnServer = PeerConnection.IceServer.builder(url).setTlsCertPolicy(PeerConnection.TlsCertPolicy.TLS_CERT_POLICY_SECURE)
+                    .setPassword(credential)
+                    .setUsername(username)
+                    .createIceServer();
+            ret.add(turnServer);
+            Log.d(TAG, "TURN Server In list: " + turnServer);
         }
         return ret;
     }

@@ -29,7 +29,7 @@ import org.webrtc.IceCandidate;
 import org.webrtc.SessionDescription;
 
 /**
- * Negotiates signaling for chatting with https://appr.tc "rooms".
+ * Negotiates signaling for chatting with https://appr.tc (or customRoomServerUrl) "rooms".
  * Uses the client<->server specifics of the apprtc AppEngine webapp.
  *
  * <p>To use: create an instance of this object (registering a message handler) and
