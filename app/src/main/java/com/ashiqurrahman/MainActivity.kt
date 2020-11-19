@@ -35,18 +35,17 @@ class MainActivity : AppCompatActivity() {
         VidChatConfig.CustomButton.customBtnListener = View.OnClickListener {
             Toast.makeText(this, "Clicked Custom button", Toast.LENGTH_LONG).show()
         }
-/*
+        /*
+            val customTURNSTUNConfig = CustomTURNSTUNConfig(
+                turnServerUrl = "turn:103.147.168.11:3478",
+                stunServerUrl = "stun:103.147.168.11:3478",
+                username = "blah",
+                credential = "blah123"
+            )
 
-        val customTURNSTUNConfig = CustomTURNSTUNConfig(
-            turnServerUrl = "turn:103.147.168.11:3478",
-            stunServerUrl = "stun:103.147.168.11:3478",
-            username = "blah",
-            credential = "blah123"
-        )
-
-        VidChatConfig.customRoomServerUrl = "https://mycustomroomserverurl"
-        VidChatConfig.customTURNSTUNConfig = customTURNSTUNConfig
-*/
+            VidChatConfig.customRoomServerUrl = "https://mycustomroomserverurl"
+            VidChatConfig.customTURNSTUNConfig = customTURNSTUNConfig
+        */
 
         VidChat.requestVideoChatPermissions(this, PERMISSION_REQUEST_CODE)
 
